@@ -1,7 +1,7 @@
 {
   "name": "pebble-bridge",
   "preferGlobal": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Matthew Tole <pebble@matthewtole.com>",
   "description": "Bridging client for doing Pebble development on weird networks.",
   "bin": {
