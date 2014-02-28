@@ -1,0 +1,24 @@
+{
+  "name": "pebble-bridge",
+  "preferGlobal": true,
+  "version": "0.1.0",
+  "author": "Matthew Tole <pebble@matthewtole.com>",
+  "description": "Bridging client for doing Pebble development on weird networks.",
+  "bin": {
+    "pebble-bridge": "index.js"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthewtole/pebble-bridge.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "commander": "~2.1.0",
+    "websocket": "~1.0.8",
+    "socket.io-client": "~0.9.16"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
+}
