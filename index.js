@@ -68,7 +68,7 @@ function setupSocketServer(server, socket) {
 // with the Pebble Bridge server.
 function setupSocketClient() {
 
-  var socket = io.connect('http://pbl:9999/bridge');
+  var socket = io.connect('http://pblweb.com/bridge');
 
   // When the socket connects, send the ID to the Bridge,
   // so it knows who we are.
