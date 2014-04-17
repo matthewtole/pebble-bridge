@@ -6,11 +6,13 @@ var program = require('commander');
 var io = require('socket.io-client');
 
 program
-  .version('0.1.4')
+  .version('0.1.6')
   .option('-i, --id [id]', 'Bridge ID')
+  .option('-u, --url [url]', 'Bridge URL')
   .parse(process.argv);
 
 var bridgeId = program.id;
+var bridgeUrl = program.url || 'http://pblweb.com/bridge/';
 var verbose = program.verbose;
 var port = 9000;
 
@@ -22,7 +24,7 @@ if (! bridgeId) {
 // to attach it to. All HTTP requests to it will be redirected to the
 // Pebble Bridge help page.
 var server = http.createServer(function (req, res) {
-  res.writeHead(302, { 'Location': 'http://pblweb.com/bridge/' });
+  res.writeHead(302, { 'Location': bridgeUrl });
   res.end();
 });
 
@@ -68,7 +70,8 @@ function setupSocketServer(server, socket) {
 // with the Pebble Bridge server.
 function setupSocketClient() {
 
-  var socket = io.connect('http://pblweb.com/bridge');
+  var socket = io.connect(bridgeUrl);
+  console.log('Connecing to Pebble Bridge: ', bridgeUrl);
 
   // When the socket connects, send the ID to the Bridge,
   // so it knows who we are.
