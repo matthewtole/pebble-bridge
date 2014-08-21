@@ -4,15 +4,16 @@ var WebSocketServer = require('websocket').server;
 var http = require('http');
 var program = require('commander');
 var io = require('socket.io-client');
+var fs = require('fs');
 
 program
-  .version('0.1.6')
+  .version('0.1.8')
   .option('-i, --id [id]', 'Bridge ID')
   .option('-u, --url [url]', 'Bridge URL')
   .parse(process.argv);
 
 var bridgeId = program.id;
-var bridgeUrl = program.url || 'http://pblweb.com/bridge/';
+var bridgeUrl = program.url || 'http://pblweb.com/bridge';
 var verbose = program.verbose;
 var port = 9000;
 
@@ -78,6 +79,10 @@ function setupSocketClient() {
   socket.on('connect', function () {
     socket.emit('id', { id: bridgeId });
     console.log('Connected to Pebble Bridge with ID ' + bridgeId);
+  });
+
+  socket.on('disconnect', function () {
+    console.log("Disconnected from Pebble Bridge");
   });
 
   // Introducing, the world's worst error handling.
